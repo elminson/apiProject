@@ -12,9 +12,3 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
 
 COPY composer.json composer.lock ./
 RUN composer install --no-scripts --no-autoloader
-RUN composer update
-RUN php artisan config:clear
-RUN php artisan config:cache
-RUN php artisan key:generate
-RUN php artisan migrate
-RUN php artisan db:seed
