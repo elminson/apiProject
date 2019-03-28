@@ -1,0 +1,328 @@
+FORMAT: 1A
+
+# Products API
+Assigment by Erply Inc.
+
+# Products [/api/products/{?api_token,page,per_page}]
+In order to get an <span style="color:green"><b>API Token</b></span> you have to <a href="/login">Login</a> and Getting from your dashboard
+or  you can generate a new <span style="color:green"><b>API Toke</b></span> invalidating the previews one.
+
++ Parameters
+    + api_token: 5RbMmslwfbLZs64qQ1P97DUumpaS4eLpTIHBDpCsuX0ntXqlxQzshjTbkDLm (string) - <span style="color:red">*Required* </span> Generated after login
+
+## List of Products [GET]
++ Parameters
+    + page: 1 (number)
+    + per_page: 5 (number) - Number of item per page (default 10) [Optional]
++ Response 200 (application/json)
+
+        {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 1,
+                    "name": "Incredible Iron Watch",
+                    "price": "531.63",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 2,
+                    "name": "Lightweight Linen Gloves",
+                    "price": "312.60",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 3,
+                    "name": "Sleek Concrete Chair",
+                    "price": "140.73",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 4,
+                    "name": "Awesome Copper Watch",
+                    "price": "440.90",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 5,
+                    "name": "Fantastic Wool Keyboard",
+                    "price": "842.93",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                }
+            ],
+            "first_page_url": "http://127.0.0.1:8080/api/products?page=1",
+            "from": 1,
+            "last_page": 10,
+            "last_page_url": "http://127.0.0.1:8080/api/products?page=10",
+            "next_page_url": "http://127.0.0.1:8080/api/products?page=2",
+            "path": "http://127.0.0.1:8080/api/products",
+            "per_page": "5",
+            "prev_page_url": null,
+            "to": 5,
+            "total": 50
+        }
+
+## Retrieve Product [GET /api/products/{id}{?api_token}]
+This return product by id.
+
++ Parameters
+    + id: 3 (number) - Product id
+
++ Response 200 (application/json)
+
+       {
+           "product": {
+               "id": 3,
+               "name": "Sleek Concrete Chair",
+               "price": "140.73",
+               "created_at": "2019-03-27 04:23:45",
+               "updated_at": "2019-03-27 04:23:45"
+           }
+       }
+## Retrieve Product (not found response) [GET /api/products/{id}{?api_token}]
+When the Product don't exist
+
++ Parameters
+    + id: 294949 (number) - Product id
+
++ Response 404 (application/json)
+    {
+      "code": 404,
+      "message": "Record not found!"
+    }
+
+## Delete Product [DELETE /api/products/{id}{?api_token}]
+
++ Parameters
+    + id: 1 (number) - <span style="color:red">*Required* </span>
+
++ Response 204
+
+## Delete Product (not found response) [DELETE /api/products/{id}{?api_token}]
+When the Product don't exist
+
++ Parameters
+    + id: 294949 (number) - Product id
+
++ Response 404 (application/json)
+    {
+      "code": 404,
+      "message": "Record not found!"
+    }
+
+
+## Create Product [POST /api/products]
+
++ Parameters
+    + name: Product X (string) - <span style="color:red">*Required* </span>
+    + price: 13.33 (price format)  - <span style="color:red">*Required* </span>
+
++ Response 200 (application/json)
+    {
+      "product": {
+        "name": "Product X",
+        "price": "13.33",
+        "updated_at": "2019-03-27 04:53:32",
+        "created_at": "2019-03-27 04:53:32",
+        "id": 52
+      }
+    }
+
+
+## Update a Product [PUT /api/products/52]
+
++ Parameters
+    + name: Product X (string) - <span style="color:red">*Required* </span>
+    + price: 24.33 (price format)  - <span style="color:red">*Required* </span>
+
++ Response 200 (application/json)
+    {
+      "product": {
+        "id": 52,
+        "name": "Product X",
+        "price": "23.33",
+        "created_at": "2019-03-27 04:53:32",
+        "updated_at": "2019-03-27 05:00:42"
+      }
+    }
+
+## Update a Product (not found response) [PUT /api/products/{id}]
+When the Product don't exist
+
++ Parameters
+    + id: 294949 (number) - Product id
+
++ Response 404 (application/json)
+    {
+      "code": 404,
+      "message": "Record not found!"
+    }
+
+
+## Search Products by name [GET /api/products/search/{product_name}{?api_token}]
+
++ Parameters
+    + product_name: chair (string) - <span style="color:red">*Required* </span>
+
++ Response 200 (application/json)
+    {
+      "current_page": 1,
+      "data": [
+        {
+          "id": 11,
+          "name": "Fantastic Wooden Chair",
+          "price": "676.20",
+          "created_at": "2019-03-27 04:23:45",
+          "updated_at": "2019-03-27 04:23:45"
+        },
+        {
+          "id": 13,
+          "name": "Durable Paper Chair",
+          "price": "918.52",
+          "created_at": "2019-03-27 04:23:45",
+          "updated_at": "2019-03-27 04:23:45"
+        },
+        {
+          "id": 26,
+          "name": "Incredible Silk Chair",
+          "price": "68.45",
+          "created_at": "2019-03-27 04:23:45",
+          "updated_at": "2019-03-27 04:23:45"
+        },
+        {
+          "id": 33,
+          "name": "Gorgeous Copper Chair",
+          "price": "405.85",
+          "created_at": "2019-03-27 04:23:45",
+          "updated_at": "2019-03-27 04:23:45"
+        }
+      ],
+      "first_page_url": "http:\/\/127.0.0.1:8080\/api\/products\/search\/chair?page=1",
+      "from": 1,
+      "last_page": 1,
+      "last_page_url": "http:\/\/127.0.0.1:8080\/api\/products\/search\/chair?page=1",
+      "next_page_url": null,
+      "path": "http:\/\/127.0.0.1:8080\/api\/products\/search\/chair",
+      "per_page": "10",
+      "prev_page_url": null,
+      "to": 4,
+      "total": 4
+    }
+
+## Search Products by name (not found response) [GET /api/products/search/{product_name}{?api_token}]
+When the Product don't exist
+
++ Parameters
+    + product_name: chair old (string) - <span style="color:red">*Required* </span>
+
++ Response 404 (application/json)
+    {
+      "code": 404,
+      "message": "Record not found!"
+    }
+
+
+## Search Products by exact name [GET /api/products/searchexact/{product_name}{?api_token}]
+When the Product don't exist
+
++ Parameters
+    + product_name: Fantastic Wooden Chair (string) - <span style="color:red">*Required* </span>
+
++ Response 200 (application/json)
+    {
+      "current_page": 1,
+      "data": [
+        {
+          "id": 11,
+          "name": "Fantastic Wooden Chair",
+          "price": "676.20",
+          "created_at": "2019-03-27 04:23:45",
+          "updated_at": "2019-03-27 04:23:45"
+        }
+      ],
+      "first_page_url": "http:\/\/127.0.0.1:8080\/api\/products\/search\/Fantastic%20Wooden%20Chair?page=1",
+      "from": 1,
+      "last_page": 1,
+      "last_page_url": "http:\/\/127.0.0.1:8080\/api\/products\/search\/Fantastic%20Wooden%20Chair?page=1",
+      "next_page_url": null,
+      "path": "http:\/\/127.0.0.1:8080\/api\/products\/search\/Fantastic%20Wooden%20Chair",
+      "per_page": "10",
+      "prev_page_url": null,
+      "to": 1,
+      "total": 1
+    }
+
+## Search Products by exact name (not found response) [GET /api/products/searchexact/{product_name}{?api_token}]
+When the Product don't exist
+
++ Parameters
+    + product_name: Fantastic Wooden Chair New (string) - <span style="color:red">*Required* </span>
+
++ Response 404 (application/json)
+    {
+      "code": 404,
+      "message": "Record not found!"
+    }
+
+
+
+## Complete request example: [GET /api/products/?api_token=5RbMmslwfbLZs64qQ1P97DUumpaS4eLpTIHBDpCsuX0ntXqlxQzshjTbkDLm&page=5&per_page=1]
+
++ Response 200 (application/json)
+        {
+            "current_page": 1,
+            "data": [
+                {
+                    "id": 1,
+                    "name": "Incredible Iron Watch",
+                    "price": "531.63",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 2,
+                    "name": "Lightweight Linen Gloves",
+                    "price": "312.60",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 3,
+                    "name": "Sleek Concrete Chair",
+                    "price": "140.73",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 4,
+                    "name": "Awesome Copper Watch",
+                    "price": "440.90",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                },
+                {
+                    "id": 5,
+                    "name": "Fantastic Wool Keyboard",
+                    "price": "842.93",
+                    "created_at": "2019-03-27 04:23:45",
+                    "updated_at": "2019-03-27 04:23:45"
+                }
+            ],
+            "first_page_url": "http://127.0.0.1:8080/api/products?page=1",
+            "from": 1,
+            "last_page": 10,
+            "last_page_url": "http://127.0.0.1:8080/api/products?page=10",
+            "next_page_url": "http://127.0.0.1:8080/api/products?page=2",
+            "path": "http://127.0.0.1:8080/api/products",
+            "per_page": "5",
+            "prev_page_url": null,
+            "to": 5,
+            "total": 50
+        }
+
+## Elminson De Oleo Baez
