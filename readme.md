@@ -67,6 +67,41 @@ http://127.0.0.1:8080/register
 ## Install the project 
 (replace http://127.0.0.1:8080/ with your server ip and port)
 
+### Up and running
+
+In order to run the project after install git and docker you will need
+1) clone this repository.
+3) Build the app.
+4) Start and runs the entire app.
+
+```
+git clone https://github.com/elminson/apiProject.git
+cd apiProject
+docker-compose build
+docker-compose up
+```
+Now you can enter in the docker container 
+```sh
+docker exec -it apiproject_app_1  bash
+```
+and run this 
+```sh
+composer install
+composer update
+php artisan config:clear
+php artisan config:cache
+composer dump-autoload
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+
+```
+
+The app will be accesible by the port 8080 
+```
+http://127.0.0.1:8080/
+```
+
 
 ### SQL schema `db_schema.sql`
 The SQL Schema is included with the project, however this SQL Schema is loaded 
