@@ -46,7 +46,7 @@ However this project was created using docker, you can install as a regular Lara
     php ext: imagick mcrypt pdo_mysql mbstring zip
 
 
-##If you will use docker run this instructions
+### If you will use docker run this instructions
     
     cd product
     docker-compose build
