@@ -12,3 +12,5 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
 
 COPY composer.json composer.lock ./
 RUN composer install --no-scripts --no-autoloader
+COPY .env ./.env
+RUN composer install --no-scripts --no-autoloader
