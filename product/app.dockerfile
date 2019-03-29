@@ -11,4 +11,5 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
     && docker-php-ext-install mcrypt pdo_mysql mbstring zip
 
 COPY composer.json composer.lock ./
+COPY .env ./.env
 RUN composer install --no-scripts --no-autoloader
